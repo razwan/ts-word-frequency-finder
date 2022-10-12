@@ -16,6 +16,7 @@ const getFileContents: () => Promise<string | undefined> = async () => {
     if ( contents ) {
         const wordFrequency = getSortedWordFrequency( contents );
         const output = getOutput( wordFrequency );
+
         console.log( output );
     }
 })();
