@@ -1,17 +1,8 @@
-import fs from "fs/promises";
-
+import { getFileContents } from "./server/utils";
 import { getSortedWordFrequency, getOutput } from "./utils";
 
-const getFileContents: () => Promise<string | undefined> = async () => {
-    try {
-        return await fs.readFile( './src/words.txt', { encoding: 'utf8' });
-    } catch (err) {
-        console.log(err);
-    }
-}
-
 (async () => {
-    const contents = await getFileContents();
+    const contents = await getFileContents( './src/words.txt' );
 
     if ( contents ) {
         const wordFrequency = getSortedWordFrequency( contents );
