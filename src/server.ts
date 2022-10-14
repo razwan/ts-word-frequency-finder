@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 
 import { getFileContents } from "./server/utils";
-import { getSortedWordFrequency } from './utils';
+import { getSortedWordsFrequencies } from './utils';
 
 const app = express();
 const port = 3000;
@@ -21,8 +21,8 @@ app.get( '/words', async (req, res) => {
         return;
     }
 
-    const wordFrequency = getSortedWordFrequency( contents );
-    
+    const wordFrequency = getSortedWordsFrequencies( contents );
+
     res.type( 'application/json' );
     res.send( JSON.stringify( [...wordFrequency.entries()] ) );
 } );

@@ -1,6 +1,6 @@
-export const getSortedWordFrequency: ( data: string ) => Map<string, number> = ( data ) => {
-    const wordFrequency = getWordFrequency( data );
-    return sortWordFrequency( wordFrequency );
+export const getSortedWordsFrequencies: ( data: string ) => Map<string, number> = ( data ) => {
+    const wordFrequency = getWordsFrequencies( data );
+    return sortWordsFrequencies( wordFrequency );
 }
 
 export const getOutput: ( wordFrequency: Map<string, number> ) => string = ( wordFrequency ) => {
@@ -15,7 +15,7 @@ export const getOutput: ( wordFrequency: Map<string, number> ) => string = ( wor
     return rows.join('\n');
 }
 
-const getWordFrequency: ( data: string ) => Map<string, number> = ( data ) => {
+const getWordsFrequencies: ( data: string ) => Map<string, number> = ( data ) => {
     const wordFrequency: Map<string, number> = new Map();
     const words = data.match(/[^\s.,\/#!$%\^&\*;:{}=\-_`~()]+/g) ?? [];
 
@@ -31,7 +31,7 @@ const getWordFrequency: ( data: string ) => Map<string, number> = ( data ) => {
     return wordFrequency;
 }
 
-const sortWordFrequency: ( original: Map<string, number> ) => Map<string, number> = ( original ) => {
+const sortWordsFrequencies: ( original: Map<string, number> ) => Map<string, number> = ( original ) => {
     return new Map( [ ...original.entries() ].sort( ( a, b ) => {
         return b[1] - a[1];
     } ) );

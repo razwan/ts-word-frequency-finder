@@ -1,5 +1,5 @@
 import { getFileContents } from "./server/utils";
-import { getSortedWordFrequency, getOutput } from "./utils";
+import { getSortedWordsFrequencies, getOutput } from "./utils";
 
 const performanceMeasurement = ( contents: string ) => {
     const startTotal = performance.now();
@@ -9,7 +9,7 @@ const performanceMeasurement = ( contents: string ) => {
     
     Array(iterations).fill(null).forEach( () => {
         const start = performance.now();
-        getSortedWordFrequency( contents );
+        getSortedWordsFrequencies( contents );
         const end = performance.now();
         maxTime = Math.max( end - start, maxTime );
         minTime = Math.min( end - start, minTime );
@@ -27,7 +27,7 @@ const performanceMeasurement = ( contents: string ) => {
     const contents = await getFileContents( './src/words.txt' );
 
     if ( contents ) {
-        const wordFrequency = getSortedWordFrequency( contents );
+        const wordFrequency = getSortedWordsFrequencies( contents );
         const output = getOutput( wordFrequency );
 
         console.log( output );
