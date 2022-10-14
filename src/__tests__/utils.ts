@@ -14,6 +14,28 @@ test( 'given a string count the number of appearances of each word', () => {
     expect( wordFrequency.get( 'not' ) ).toBe( 1 );
 } );
 
+test( 'empty string returns empty set', () => {
+    // arrange
+    const data = '';
+
+    // act
+    const wordFrequency = getSortedWordsFrequencies( data );
+
+    // assert
+    expect( [...wordFrequency.entries()] ).toEqual( [] );
+} );
+
+test( 'whitespace only returns empty set', () => {
+    // arrange
+    const data = '  \t  \n    \t\t   ';
+
+    // act
+    const wordFrequency = getSortedWordsFrequencies( data );
+
+    // assert
+    expect( [...wordFrequency.entries()] ).toEqual( [] );
+} );
+
 test( 'when counting appearances of a word ignore casing', () => {
     const data = 'camelcase cAmElcASe CamelCase CAMELCASE';
     const wordFrequency = getSortedWordsFrequencies( data );
@@ -46,7 +68,7 @@ test( 'compound words are treated as a single word and counted properly', () => 
     const data = `don't remove my apostrophes`;
     const wordFrequency = getSortedWordsFrequencies( data );
 
-    expect( wordFrequency .get( "don't" ) ).toBe( 1 );
+    expect( wordFrequency.get( "don't" ) ).toBe( 1 );
 } );
 
 test( 'sorts in descending order a word frequency map instance', () => {
