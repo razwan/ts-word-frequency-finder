@@ -15,14 +15,9 @@ export const getOutput: ( wordFrequency: Map<string, number> ) => string = ( wor
     return rows.join('\n');
 }
 
-const removePunctuation: ( original: string ) => string = ( original ) => {
-    const stripped = original.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"");
-    return stripped;
-}
-
 const getWordFrequency: ( data: string ) => Map<string, number> = ( data ) => {
     const wordFrequency: Map<string, number> = new Map();
-    const words = data.trim().split(/\s+/).map( removePunctuation );
+    const words = data.match(/[^\s.,\/#!$%\^&\*;:{}=\-_`~()]+/g) ?? [];
 
     words.forEach( word => {
         const key = word.toLowerCase();

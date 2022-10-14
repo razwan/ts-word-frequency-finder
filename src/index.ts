@@ -31,7 +31,10 @@ const performanceMeasurement = ( contents: string ) => {
         const output = getOutput( wordFrequency );
 
         console.log( output );
-        console.log( '' );
-        performanceMeasurement( contents );
+
+        // performanceMeasurement( contents );
+
+        // average time before tweaks:  3.644ms
+        // average time after tweaks:   2.743ms -> 75.27%
     }
 })();
